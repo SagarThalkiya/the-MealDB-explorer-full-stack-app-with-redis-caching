@@ -22,6 +22,9 @@ finfactor_assignment/
 - Node.js 18+ (ships with npm 10+)
 - PowerShell or any POSIX-like shell
 
+## architechtre diagram 
+    https://app.eraser.io/workspace/eBOqF8U2VQcbMJszbqK7?origin=share
+
 ## One-Time Setup
 
 ```powershell
