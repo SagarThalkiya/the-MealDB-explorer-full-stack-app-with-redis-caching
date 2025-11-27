@@ -25,7 +25,7 @@ finfactor_assignment/
 ## architechtre diagram 
     https://app.eraser.io/workspace/eBOqF8U2VQcbMJszbqK7?origin=share
 
-    ![alt text](TheMealDB_Explorer-backend-architechture.png)
+![alt text](TheMealDB_Explorer-backend-architechture.png)
 
 ## One-Time Setup
 
