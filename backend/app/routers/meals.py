@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, Query
 
-from ..schemas import Category, MealDetail, MealSummary, parse_category, parse_meal_detail, parse_meal_summary
-from ..themealdb_client import MealDBClientError, mealdb_client
+from schemas import Category, MealDetail, MealSummary, parse_category, parse_meal_detail, parse_meal_summary
+from themealdb_client import MealDBClientError, mealdb_client
 
 router = APIRouter(prefix="/api", tags=["meals"])
 

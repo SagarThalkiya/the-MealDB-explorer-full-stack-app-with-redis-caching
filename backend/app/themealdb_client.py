@@ -6,8 +6,8 @@ from typing import Any
 
 import httpx
 
-from .cache import ResponseCache
-from .config import settings
+from cache import ResponseCache
+from config import settings
 
 
 class MealDBClientError(RuntimeError):
