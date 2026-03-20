@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 # Load .env file from project root or current directory
 # Since we might run this from the backend folder or project root
 # search upwards from the current file's directory
-env_path = Path(__file__).resolve().parent.parent.parent / ".env"
-load_dotenv(dotenv_path=env_path)
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(dotenv_path=env_path, override=True)
 
 
 class Settings:
