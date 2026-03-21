@@ -1,26 +1,21 @@
 """Main entrypoint for the FastAPI application."""
 
 from __future__ import annotations
-
+import os  # Added to read env vars
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# Using absolute imports to ensure compatibility with Vercel/Serverless environments
+# Using relative imports for Vercel package resolution
 from .config import settings
 from .routers import meals
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    """
-    Lifespan context manager for startup and shutdown events.
-    Useful for initializing connection pools, caches, etc.
-    """
-    # Startup logic here
+    """Startup and shutdown logic."""
     yield
-    # Shutdown logic here
 
 
 def create_app() -> FastAPI:
@@ -33,10 +28,19 @@ def create_app() -> FastAPI:
         openapi_url="/api/openapi.json",
     )
 
-    # Configure CORS
+    # --- CORS CONFIGURATION ---
+    # Get the deployed frontend URL from Vercel Env, fallback to local dev
+    frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+    
+    origins = [
+        frontend_url,
+        "http://localhost:5173",  # Vite local default
+        "http://127.0.0.1:5173",
+    ]
+
     application.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # Adjust this for production
+        allow_origins=origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -56,5 +60,5 @@ def create_app() -> FastAPI:
     return application
 
 
-# The FastAPI instance named 'app' for Vercel and other WSGI/ASGI servers
+# The FastAPI instance named 'app' for Vercel
 app = create_app()
