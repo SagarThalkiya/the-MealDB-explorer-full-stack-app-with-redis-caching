@@ -1,9 +1,16 @@
 import type { Category, MealDetail, MealSummary } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api';
+// --- SIMPLEST SOLUTION: Replace the old line with this ---
+const API_BASE_URL = window.location.hostname === "localhost" 
+  ? "http://localhost:8000" 
+  : "https://the-meal-db-explorer-full-stack-app-with-redis-caching.vercel.app";
+// ---------------------------------------------------------
 
 async function request<T>(endpoint: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  // Ensure we include /api because your backend routes are prefixed with it
+  const url = `${API_BASE_URL}/api${endpoint}`;
+  
+  const response = await fetch(url, {
     ...init,
     headers: {
       'Content-Type': 'application/json',
@@ -37,4 +44,3 @@ export const mealService = {
     return request<MealSummary[]>(`/categories/${encodeURIComponent(category)}/meals`);
   },
 };
-
