@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'https://the-meal-db-explorer-full-stack-app-with-redis-cachi-ni51ikyxm.vercel.app',
         changeOrigin: true,
       },
     },
