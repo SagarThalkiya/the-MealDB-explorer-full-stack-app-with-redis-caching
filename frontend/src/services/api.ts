@@ -3,7 +3,7 @@ import type { Category, MealDetail, MealSummary } from '../types';
 // --- SIMPLEST SOLUTION: Replace the old line with this ---
 const API_BASE_URL = window.location.hostname === "localhost" 
   ? "http://localhost:8000" 
-  : "https://the-meal-db-explorer-full-stack-app-with-redis-caching.vercel.app";
+  : "https://the-meal-db-explorer-full-stack-app.vercel.app";
 // ---------------------------------------------------------
 
 async function request<T>(endpoint: string, init?: RequestInit): Promise<T> {
