@@ -37,14 +37,16 @@ def create_app() -> FastAPI:
         "http://localhost:5173",  # Vite local default
         "http://127.0.0.1:5173",
     ]
-
     application.add_middleware(
-        CORSMiddleware,
-        allow_origins=origins,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "https://the-meal-db-explorer-full-stack-app-ten.vercel.app" # Your Frontend URL
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
     # Include routers
     application.include_router(meals.router)
